@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FITOMOT</title>
+    <title>TREMENTIMOTS</title>
     <style>
-        /* Estils generals */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             display: flex; 
@@ -31,26 +30,32 @@
         .header { margin-top: 10px; margin-bottom: 10px; }
         
         .logo {
-            max-width: 100px;
+            max-width: 90px;
             height: auto;
-            margin-bottom: 10px;
-            border-radius: 10px;
+            margin-bottom: 5px;
         }
 
         h1 { 
-            font-size: 2.8rem; 
-            letter-spacing: 0.2rem; 
+            font-size: 2.2rem; 
+            letter-spacing: 0.1rem; 
             margin: 0;
-            color: #43a047; 
+            color: #2e5a2e; 
             font-weight: bold;
+            text-transform: uppercase;
         }
 
-        .instr-link {
+        .subtitle {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #538d4e;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .instr-text {
             color: #787c7e;
-            text-decoration: underline;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 15px;
-            cursor: pointer;
             display: block;
         }
         
@@ -60,8 +65,8 @@
             gap: 8px; 
             margin-top: 10px;
             width: 100%;
-            max-width: 320px;
-            padding: 0 15px;
+            max-width: 300px;
+            padding: 0 10px;
             box-sizing: border-box;
         }
 
@@ -83,46 +88,64 @@
         .absent { background-color: #787c7e; border-color: #787c7e; color: white; }
 
         input { 
-            margin-top: 25px; 
+            margin-top: 20px; 
             padding: 12px; 
             font-size: 1.2rem; 
             text-transform: uppercase; 
             text-align: center; 
             background-color: #f8f9fa;
-            color: #1a1a1b;
             border: 2px solid #d3d6da;
             border-radius: 8px;
-            width: 180px;
+            width: 160px;
             outline: none;
         }
 
         #message { 
             margin-top: 20px; 
             font-weight: bold; 
-            font-size: 1.1rem; 
-            min-height: 30px; 
             padding: 0 20px;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
-        .reward-text {
-            font-weight: normal;
-            font-size: 0.95rem;
-            color: #4a4a4a;
-            display: block;
-            margin-top: 15px;
-            background-color: #f0f7f0;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px dashed #43a047;
+        .final-options {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #43a047; 
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .instagram-link {
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #e1306c;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
         .instructions-section {
             width: 100%;
             background-color: #f4f4f4; 
             border-top: 1px solid #d3d6da;
-            display: flex;
-            justify-content: center;
             padding: 40px 0;
             margin-top: 40px;
         }
@@ -130,51 +153,47 @@
         .instructions-content {
             max-width: 380px;
             text-align: left;
-            font-size: 0.95rem;
-            color: #3e3e3e;
-            line-height: 1.6;
+            margin: auto;
             padding: 0 25px;
+            font-size: 0.9rem;
         }
 
-        .instructions-content h2 { 
-            font-size: 1.2rem; 
-            color: #1a1a1b; 
-            margin-top: 0;
-            margin-bottom: 15px; 
-        }
-
-        .color-box { padding: 2px 6px; border-radius: 3px; font-weight: bold; color: white; font-size: 0.85rem; }
+        .color-box { padding: 2px 6px; border-radius: 3px; font-weight: bold; color: white; }
         .gray { background-color: #787c7e; }
         .yellow { background-color: #c9b458; }
         .green { background-color: #6aaa64; }
-        .luck { display: block; margin-top: 20px; font-weight: bold; color: #43a047; text-align: center; font-size: 1.1rem; }
     </style>
 </head>
 <body>
 
     <div class="game-container">
         <div class="header">
-            <img src="https://www.essenciesdetuixent.com/wp-content/uploads/2023/07/Projecte-nou.png" alt="Logo FITOMOT" class="logo">
-            <h1>FITOMOT</h1>
-            <a href="#instruccions" class="instr-link">Llegeix les instruccions del joc</a>
+            <img src="https://www.essenciesdetuixent.com/wp-content/uploads/2023/07/Projecte-nou.png" alt="Logo" class="logo">
+            <h1>TREMENTIMOTS</h1>
+            <span class="subtitle">Els mots de les trementinaires</span>
+            <span class="instr-text">Instruccions del joc més avall</span>
         </div>
         
         <div class="grid" id="grid"></div>
 
         <input type="text" id="guessInput" maxlength="5" autofocus placeholder="Escriu...">
         <div id="message"></div>
+
+        <a href="https://www.instagram.com/essenciesdetuixent/" class="instagram-link" target="_blank">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+            </svg>
+            Segueix-me a Instagram
+        </a>
     </div>
 
     <div class="instructions-section" id="instruccions">
         <div class="instructions-content">
             <h2>Com s'hi juga?</h2>
-            <p>Tens 5 intents per a endevinar una paraula de 5 lletres relacionada amb la fitoteràpia.<br><br>
-            Tecleja una paraula i fes un retorn. Omet els accents i els punts volats.<br><br>
-            <span class="color-box gray">Color gris</span> = la paraula no conté aquesta lletra.<br>
-            <span class="color-box yellow">Color groc</span> = la paraula la conté, però en una altra posició.<br>
-            <span class="color-box green">Color verd</span> = has encertat lletra i posició.<br><br>
-            Hi pot haver lletres repetides.
-            <span class="luck">Molta sort!</span></p>
+            <p>Tens 5 intents per endevinar un <strong>Trementimot</strong> de 5 lletres.<br><br>
+            <span class="color-box gray">Gris</span> = la lletra no hi és.<br>
+            <span class="color-box yellow">Groc</span> = hi és, però en una altra posició.<br>
+            <span class="color-box green">Verd</span> = has encertat lletra i posició.</p>
         </div>
     </div>
 
@@ -182,6 +201,9 @@
         const secretWord = "MENTA"; 
         const maxAttempts = 5; 
         let attempts = 0;
+        let gameOver = false;
+        let resultsEmoji = "";
+
         const grid = document.getElementById('grid');
         const input = document.getElementById('guessInput');
         const message = document.getElementById('message');
@@ -194,51 +216,91 @@
         }
 
         input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !gameOver) {
                 const guess = input.value.toUpperCase();
-                if (guess.length !== 5) {
-                    message.innerText = "N'has de posar 5!";
-                    return;
-                }
-                message.innerText = "";
+                if (guess.length !== 5) return;
                 checkGuess(guess);
                 input.value = '';
             }
         });
 
         function checkGuess(guess) {
-            if (attempts >= maxAttempts) return;
             const rowStart = attempts * 5;
+            const guessArray = guess.split('');
+            const secretArray = secretWord.split('');
+            const statuses = Array(5).fill('absent');
+            const secretUsed = Array(5).fill(false);
+            const guessUsed = Array(5).fill(false);
 
-            for (let i = 0; i < 5; i++) {
+            // Passada 1: Verds
+            guessArray.forEach((letter, i) => {
+                if (letter === secretArray[i]) {
+                    statuses[i] = 'correct';
+                    secretUsed[i] = true;
+                    guessUsed[i] = true;
+                }
+            });
+
+            // Passada 2: Grocs
+            guessArray.forEach((letter, i) => {
+                if (!guessUsed[i]) {
+                    const secretIndex = secretArray.findIndex((l, idx) => l === letter && !secretUsed[idx]);
+                    if (secretIndex !== -1) {
+                        statuses[i] = 'present';
+                        secretUsed[secretIndex] = true;
+                    }
+                }
+            });
+
+            let rowEmoji = "";
+            statuses.forEach((status, i) => {
                 const tile = document.getElementById('tile-' + (rowStart + i));
                 tile.innerText = guess[i];
-
-                if (guess[i] === secretWord[i]) {
-                    tile.classList.add('correct');
-                } else if (secretWord.includes(guess[i])) {
-                    tile.classList.add('present');
-                } else {
-                    tile.classList.add('absent');
-                }
-            }
+                tile.classList.add(status);
+                rowEmoji += status === 'correct' ? "🟩" : status === 'present' ? "🟨" : "⬜";
+            });
+            resultsEmoji += rowEmoji + "\n";
 
             if (guess === secretWord) {
-                message.innerHTML = `Molt bé! Has trobat la MENTA! 🌿<br>
-                <span class="reward-text">
-                    🎁 Com que l'has encertat, si vols pots proposar-me el pròxim FITOMOT. 
-                    Envia'm per DM una captura de pantalla i la paraula que proposes. 
-                    Ha d'estar relacionada amb el món de la fitoteràpia, la botànica, 
-                    l'aromateràpia i les essències florals. <br><br>
-                    ✨ <strong>Gràcies per participar-hi!</strong>
-                </span>`;
-                input.disabled = true;
+                endGame(true);
             } else {
                 attempts++;
-                if (attempts === maxAttempts) {
-                    message.innerText = "La paraula era: " + secretWord;
-                    input.disabled = true;
-                }
+                if (attempts === maxAttempts) endGame(false);
+            }
+        }
+
+        function endGame(win) {
+            gameOver = true;
+            input.disabled = true;
+            
+            const winMessages = [
+                "Espectacular! 🏆 Ets una trementinaire de soca-rel! 🌲🏺",
+                "Molt bé! Ets una remeiera de primera! 🌿",
+                "Ben jugat! Ets una bona aprenenta de trementinaire! 💚",
+                "Has trobat el trementimot! Enhorabona! 🍃",
+                "No rendir-se té recompensa. Pels pèls, però l'has trobat! 🔥"
+            ];
+
+            if (win) {
+                const mainMsg = winMessages[attempts];
+                message.innerHTML = `
+                    <p style="color:#2e5a2e; font-size:1.2rem">${mainMsg}</p>
+                    <div class="final-options">
+                        <button class="btn" onclick="shareResults()">Comparteix! 📲</button>
+                    </div>
+                `;
+            } else {
+                message.innerHTML = `<p>😌 Es veu que avui no tocava... però gràcies per participar-hi! ✨<br><small>La paraula era: ${secretWord}</small></p>`;
+            }
+        }
+
+        function shareResults() {
+            const text = `He resolt el #TREMENTIMOTS d'avui! 🌿\n\n${resultsEmoji}\nJuga-hi a @essenciesdetuixent`;
+            if (navigator.share) {
+                navigator.share({ title: 'TREMENTIMOTS', text: text });
+            } else {
+                navigator.clipboard.writeText(text);
+                alert("Resultats copiats! Ja els pots enganxar a les teves xarxes.");
             }
         }
     </script>
