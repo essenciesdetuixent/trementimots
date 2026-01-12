@@ -276,11 +276,11 @@
                 rowEmoji += status === 'correct' ? "🟩" : status === 'present' ? "🟨" : "⬜";
             });
             resultsEmoji += rowEmoji + "\n";
+            attempts++;
 
             if (guess === secretWord) {
                 endGame(true);
             } else {
-                attempts++;
                 if (attempts === maxAttempts) endGame(false);
             }
         }
@@ -298,7 +298,7 @@
             ];
 
             if (win) {
-                const mainMsg = winMessages[attempts];
+                const mainMsg = winMessages[attempts-1];
                 message.innerHTML = `
                     <p style="color:#2e5a2e; font-size:1.2rem">${mainMsg}</p>
                     <div class="final-options">
@@ -311,7 +311,16 @@
         }
 
         function shareResults() {
-            const text = `He resolt el #TREMENTIMOTS de la setmana! 🌿\n\n${resultsEmoji}\nJuga-hi a essenciesdetuixent.github.io/trementimots`;
+            let finalGrid = resultsEmoji;
+            const remainingRows = maxAttempts - attempts;
+            
+            if (remainingRows > 0) {
+                for (let i = 0; i < remainingRows; i++) {
+                    finalGrid += "⬜⬜⬜⬜⬜\n";
+                }
+            }
+
+            const text = `He resolt el #TREMENTIMOTS de la setmana! 🌿\n\n${finalGrid}\nJuga-hi a essenciesdetuixent.github.io/trementimots`;
             if (navigator.share) {
                 navigator.share({ title: 'TREMENTIMOTS', text: text });
             } else {
