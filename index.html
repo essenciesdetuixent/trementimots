@@ -131,20 +131,19 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* MODIFICACIÓ INSTAGRAM: Icona rosa, text verd fosc */
         .instagram-link {
             margin-top: 25px;
             display: flex;
             align-items: center;
             gap: 5px;
-            color: #2e5a2e; /* Verd fosc igual que el títol */
+            color: #2e5a2e;
             text-decoration: none;
             font-weight: bold;
             font-size: 0.9rem;
         }
 
         .instagram-link svg {
-            color: #e1306c; /* Icona es manté rosa/vermella */
+            color: #e1306c;
         }
 
         .instructions-section {
@@ -161,6 +160,17 @@
             margin: auto;
             padding: 0 25px;
             font-size: 0.9rem;
+        }
+
+        .weekly-tag {
+            text-align: center;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #787c7e;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
         }
 
         .color-box { padding: 2px 6px; border-radius: 3px; font-weight: bold; color: white; }
@@ -194,8 +204,9 @@
 
     <div class="instructions-section" id="instruccions">
         <div class="instructions-content">
+            <span class="weekly-tag">Joc setmanal. Setmana 1</span>
             <h2>Com s'hi juga?</h2>
-            <p>Tens 5 intents per a endevinar un <strong>Trementimot</strong> de 5 lletres.<br><br>
+            <p>Aquesta setmana tens 5 intents per a endevinar un <strong>Trementimot</strong> de 5 lletres.<br><br>
             <span class="color-box gray">Gris</span> = la lletra no hi és.<br>
             <span class="color-box yellow">Groc</span> = hi és, però en una altra posició.<br>
             <span class="color-box green">Verd</span> = has encertat lletra i posició.</p>
@@ -203,7 +214,7 @@
     </div>
 
     <script>
-        const secretWord = "SOFIA"; 
+        const secretWord = "MENTA"; 
         const maxAttempts = 5; 
         let attempts = 0;
         let gameOver = false;
