@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITOMOT</title>
+    <style>
+        /* Estils generals */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background-color: #ffffff; 
+            color: #1a1a1b;
+            margin: 0;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        .game-container {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header { margin-top: 10px; margin-bottom: 10px; }
+        
+        .logo {
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        h1 { 
+            font-size: 2.8rem; 
+            letter-spacing: 0.2rem; 
+            margin: 0;
+            color: #43a047; 
+            font-weight: bold;
+        }
+
+        .instr-link {
+            color: #787c7e;
+            text-decoration: underline;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+            display: block;
+        }
+        
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 8px; 
+            margin-top: 10px;
+            width: 100%;
+            max-width: 320px;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        .tile { 
+            aspect-ratio: 1 / 1;
+            border: 2px solid #d3d6da; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            user-select: none;
+            background-color: #ffffff;
+        }
+
+        .correct { background-color: #6aaa64; border-color: #6aaa64; color: white; }
+        .present { background-color: #c9b458; border-color: #c9b458; color: white; }
+        .absent { background-color: #787c7e; border-color: #787c7e; color: white; }
+
+        input { 
+            margin-top: 25px; 
+            padding: 12px; 
+            font-size: 1.2rem; 
+            text-transform: uppercase; 
+            text-align: center; 
+            background-color: #f8f9fa;
+            color: #1a1a1b;
+            border: 2px solid #d3d6da;
+            border-radius: 8px;
+            width: 180px;
+            outline: none;
+        }
+
+        #message { 
+            margin-top: 20px; 
+            font-weight: bold; 
+            font-size: 1.1rem; 
+            min-height: 30px; 
+            padding: 0 20px;
+            line-height: 1.5;
+        }
+
+        .reward-text {
+            font-weight: normal;
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            display: block;
+            margin-top: 15px;
+            background-color: #f0f7f0;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed #43a047;
+        }
+
+        .instructions-section {
+            width: 100%;
+            background-color: #f4f4f4; 
+            border-top: 1px solid #d3d6da;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        .instructions-content {
+            max-width: 380px;
+            text-align: left;
+            font-size: 0.95rem;
+            color: #3e3e3e;
+            line-height: 1.6;
+            padding: 0 25px;
+        }
+
+        .instructions-content h2 { 
+            font-size: 1.2rem; 
+            color: #1a1a1b; 
+            margin-top: 0;
+            margin-bottom: 15px; 
+        }
+
+        .color-box { padding: 2px 6px; border-radius: 3px; font-weight: bold; color: white; font-size: 0.85rem; }
+        .gray { background-color: #787c7e; }
+        .yellow { background-color: #c9b458; }
+        .green { background-color: #6aaa64; }
+        .luck { display: block; margin-top: 20px; font-weight: bold; color: #43a047; text-align: center; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <div class="header">
+            <img src="https://www.essenciesdetuixent.com/wp-content/uploads/2023/07/Projecte-nou.png" alt="Logo FITOMOT" class="logo">
+            <h1>FITOMOT</h1>
+            <a href="#instruccions" class="instr-link">Llegeix les instruccions del joc</a>
+        </div>
+        
+        <div class="grid" id="grid"></div>
+
+        <input type="text" id="guessInput" maxlength="5" autofocus placeholder="Escriu...">
+        <div id="message"></div>
+    </div>
+
+    <div class="instructions-section" id="instruccions">
+        <div class="instructions-content">
+            <h2>Com s'hi juga?</h2>
+            <p>Tens 5 intents per a endevinar una paraula de 5 lletres relacionada amb la fitoteràpia.<br><br>
+            Tecleja una paraula i fes un retorn. Omet els accents i els punts volats.<br><br>
+            <span class="color-box gray">Color gris</span> = la paraula no conté aquesta lletra.<br>
+            <span class="color-box yellow">Color groc</span> = la paraula la conté, però en una altra posició.<br>
+            <span class="color-box green">Color verd</span> = has encertat lletra i posició.<br><br>
+            Hi pot haver lletres repetides.
+            <span class="luck">Molta sort!</span></p>
+        </div>
+    </div>
+
+    <script>
+        const secretWord = "MENTA"; 
+        const maxAttempts = 5; 
+        let attempts = 0;
+        const grid = document.getElementById('grid');
+        const input = document.getElementById('guessInput');
+        const message = document.getElementById('message');
+
+        for (let i = 0; i < 25; i++) {
+            const tile = document.createElement('div');
+            tile.classList.add('tile');
+            tile.id = 'tile-' + i;
+            grid.appendChild(tile);
+        }
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const guess = input.value.toUpperCase();
+                if (guess.length !== 5) {
+                    message.innerText = "N'has de posar 5!";
+                    return;
+                }
+                message.innerText = "";
+                checkGuess(guess);
+                input.value = '';
+            }
+        });
+
+        function checkGuess(guess) {
+            if (attempts >= maxAttempts) return;
+            const rowStart = attempts * 5;
+
+            for (let i = 0; i < 5; i++) {
+                const tile = document.getElementById('tile-' + (rowStart + i));
+                tile.innerText = guess[i];
+
+                if (guess[i] === secretWord[i]) {
+                    tile.classList.add('correct');
+                } else if (secretWord.includes(guess[i])) {
+                    tile.classList.add('present');
+                } else {
+                    tile.classList.add('absent');
+                }
+            }
+
+            if (guess === secretWord) {
+                message.innerHTML = `Molt bé! Has trobat la MENTA! 🌿<br>
+                <span class="reward-text">
+                    🎁 Com que l'has encertat, si vols pots proposar-me el pròxim FITOMOT. 
+                    Envia'm per DM una captura de pantalla i la paraula que proposes. 
+                    Ha d'estar relacionada amb el món de la fitoteràpia, la botànica, 
+                    l'aromateràpia i les essències florals. <br><br>
+                    ✨ <strong>Gràcies per participar-hi!</strong>
+                </span>`;
+                input.disabled = true;
+            } else {
+                attempts++;
+                if (attempts === maxAttempts) {
+                    message.innerText = "La paraula era: " + secretWord;
+                    input.disabled = true;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
